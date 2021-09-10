@@ -30,6 +30,7 @@ let jogoArea = {
    start: function(){
      this.canvas.height = 300,
      this.context = this.canvas.getContext("2d");
+     const image = document.getElementById('source');
      document.body.insertBefore(this.canvas, document.body.childNodes[0]);
      this.intervalo = setInterval(jogoAtualizar, 20);
    },
