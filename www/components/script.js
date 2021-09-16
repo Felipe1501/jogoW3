@@ -1,6 +1,5 @@
 window.onload = function(){
   jogoInicio();
-
   document.querySelector("#direita").addEventListener("click", function(){
      right();
   });
@@ -20,9 +19,13 @@ window.onload = function(){
 
 var personagemObj;
 
+var osbtaculos;
+
+
 function jogoInicio(){
   jogoArea.start();
   personagemObj = new componentes("#F00", 10, 120, 30, 30);
+  osbtaculos = new componentes('yellow', 120, 80, 10, 100);
 }
 
 let jogoArea = {
@@ -30,12 +33,14 @@ let jogoArea = {
    start: function(){
      this.canvas.height = 300,
      this.context = this.canvas.getContext("2d");
-     const image = document.getElementById('source');
      document.body.insertBefore(this.canvas, document.body.childNodes[0]);
      this.intervalo = setInterval(jogoAtualizar, 20);
    },
    limpa: function(){
      this.context.clearRect(0,0, this.canvas.width, this.canvas.height);
+   },
+   stop: function(){
+     clearInterval(this.interval);
    }
 }
 
@@ -54,13 +59,41 @@ function componentes(cor, x, y, altura, largura){
       this.posicaoNova = function(){
         this.x += this.veloX;
         this.y += this.veloY; 
+      },
+      this.colisao = function(obj){
+        let esq = this.x;
+        let dir = this.x + this.largura;
+        let sup = this.y;
+        let inf = this.y + this.altura;
+        
+        let objEsq = obj.x;
+        let objDir = obj.x + obj.altura;
+        let objSup = obj.y;
+        let objInf = obj.y + obj.largura;
+
+        let batida = true;
+
+        if(
+          (inf < objSup) || (sup > objInf) ||
+          (dir < objEsq) || (esq > objDir)
+          ){
+          batida = false;
+
+          }
+          return batida;
       }
 }
 
 function jogoAtualizar(){
+  if(personagemObj.colisao(osbtaculos)){
+    jogoArea.stop();
+  }else{
   jogoArea.limpa();
+  osbtaculos.atualizar();
   personagemObj.posicaoNova();
   personagemObj.atualizar();
+  }
+
 }
 
 function sobe(){
@@ -78,3 +111,4 @@ function right(){
 function left(){
   personagemObj.veloX -= 1;
 }
+
