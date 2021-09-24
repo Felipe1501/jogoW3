@@ -19,6 +19,10 @@ window.onload = function(){
      desce();
      setTimeout(pare, 1000);
   });
+
+  document.querySelector("#reset").addEventListener("click", function(){
+     
+  });
 }
 
 var personagemObj;
@@ -60,7 +64,7 @@ function contarI(n){
   }
 }
 
-function componentes(cor, x, y, altura, largura, tipo){
+function componentes(cor, x, y, largura, altura, tipo){
       this.tipo = tipo,
       this.altura = altura,
       this.largura = largura,
@@ -71,13 +75,14 @@ function componentes(cor, x, y, altura, largura, tipo){
       this.veloY = 0,
       this.atualizar = function(){
       contexto = jogoArea.context;
-      if(this.tipo == "texto"){
+      if(this.tipo == 'texto'){
       contexto.font = this.altura + " " + this.largura;  
       contexto.fillStyle = cor;
       contexto.fillText(this.texto, this.x, this.y);
-      }
+      }else{
       contexto.fillStyle = cor,
       contexto.fillRect(this.x, this.y, this.altura, this.largura);
+      }
       },
       this.posicaoNova = function(){
         this.x += this.veloX;
@@ -112,7 +117,7 @@ function jogoAtualizar(){
 
   for(i = 0 ; i < osbtaculos.length; i++){
     if(personagemObj.colisao(osbtaculos[i])){
-    jogoArea.stop();
+    jogoArea.pare();
     return;
      }
   }
@@ -124,14 +129,15 @@ function jogoAtualizar(){
    x = jogoArea.canvas.width;
    miniAltura = 20;
    maxAltura = 200; 
-   altura = Math.floor(Math.random() * (maxAltura - miniAltura + 1 ) + minVazio);
+   altura = Math.floor (Math.random() * (maxAltura - miniAltura + 1 ) + miniAltura);
    minVazio = 50;
    maxVazio = 200;
-   vazio = Math.floor(Math.random()* (maxVazio - minVazio + 1) + minVazio);
-   y = jogoArea.canvas.height - 200;
+   vazio = Math.floor(Math.random() * (maxVazio - minVazio + 1) + minVazio);
+   //y = jogoArea.canvas.height - 200;
    osbtaculos.push = (new componentes('yellow', x, 0 , altura, 10));
    osbtaculos.push = (new componentes('yellow', x, altura  + vazio , x - altura - vazio, 10));
   }
+
   //osbtaculos.atualizar();
 
   for(i = 0; i < osbtaculos.length; i++) {
@@ -139,7 +145,7 @@ function jogoAtualizar(){
     osbtaculos[i].atualizar();
   }
 
-  pontos = "PONTOS: " + jogoArea.frame;
+  pontos.texto = "PONTOS: " + jogoArea.frame;
   pontos.atualizar();
   personagemObj.posicaoNova();
   personagemObj.atualizar();
