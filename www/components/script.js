@@ -2,22 +2,22 @@ window.onload = function(){
   jogoInicio();
   document.querySelector("#direita").addEventListener("click", function(){
      right();
-     setTimeout(pare, 500);
+     setTimeout(pare, 1000);
   });
 
    document.querySelector("#esquerda").addEventListener("click", function(){
      left();
-     setTimeout(pare, 500);
+     setTimeout(pare, 1000);
   });
 
    document.querySelector("#subir").addEventListener("click", function(){
      sobe();
-     setTimeout(pare, 500);
+     setTimeout(pare, 1000);
   });
 
    document.querySelector("#descer").addEventListener("click", function(){
      desce();
-     setTimeout(pare, 500);
+     setTimeout(pare, 1000);
   });
 }
 
@@ -25,10 +25,13 @@ var personagemObj;
 
 var osbtaculos = [];
 
+var pontos;
+
 
 function jogoInicio(){
   jogoArea.start();
   personagemObj = new componentes("#F00", 10, 120, 30, 30);
+  pontos = new componentes("#000", 30, 30, 'Consolas', '30px', 'texto');
   //osbtaculos = new componentes('yellow', 120, 80, 10, 100);
 }
 
@@ -49,23 +52,30 @@ let jogoArea = {
    }
 }
 
-function contarI(){
-  if((jogoArea.frame / n ) %1 == 0) {
+function contarI(n){
+  if((jogoArea.frame / n ) % 1 == 0) {
     return true;
   }else {
     return false;
   }
 }
 
-function componentes(cor, x, y, altura, largura){
+function componentes(cor, x, y, altura, largura, tipo){
+      this.tipo = tipo,
       this.altura = altura,
       this.largura = largura,
+      this.texto = 0,
       this.x = x,
       this.y = y,
       this.veloX = 0,
       this.veloY = 0,
       this.atualizar = function(){
       contexto = jogoArea.context;
+      if(this.tipo == "texto"){
+      contexto.font = this.altura + " " + this.largura;  
+      contexto.fillStyle = cor;
+      contexto.fillText(this.texto, this.x, this.y);
+      }
       contexto.fillStyle = cor,
       contexto.fillRect(this.x, this.y, this.altura, this.largura);
       },
@@ -99,15 +109,17 @@ function componentes(cor, x, y, altura, largura){
 
 function jogoAtualizar(){
   let x, y;
+
   for(i = 0 ; i < osbtaculos.length; i++){
     if(personagemObj.colisao(osbtaculos[i])){
     jogoArea.stop();
     return;
-  }
+     }
   }
   
   jogoArea.limpa();
   jogoArea.frame += 1;
+
   if(jogoArea.frame == 1 || contarI(150)) {
    x = jogoArea.canvas.width;
    miniAltura = 20;
@@ -115,7 +127,7 @@ function jogoAtualizar(){
    altura = Math.floor(Math.random() * (maxAltura - miniAltura + 1 ) + minVazio);
    minVazio = 50;
    maxVazio = 200;
-   vazio = Math.floor(Math.random()* (maxVazio-minVazio + 1) + minVazio);
+   vazio = Math.floor(Math.random()* (maxVazio - minVazio + 1) + minVazio);
    y = jogoArea.canvas.height - 200;
    osbtaculos.push = (new componentes('yellow', x, 0 , altura, 10));
    osbtaculos.push = (new componentes('yellow', x, altura  + vazio , x - altura - vazio, 10));
@@ -126,6 +138,9 @@ function jogoAtualizar(){
     osbtaculos[i].x += -1;
     osbtaculos[i].atualizar();
   }
+
+  pontos = "PONTOS: " + jogoArea.frame;
+  pontos.atualizar();
   personagemObj.posicaoNova();
   personagemObj.atualizar();
  
