@@ -35,7 +35,7 @@ var pontos;
 function jogoInicio(){
   jogoArea.start();
   personagemObj = new componentes("#F00", 10, 120, 30, 30);
-  pontos = new componentes("#000", 30, 30, 'Consolas', '30px', 'texto');
+  pontos = new componentes("#F00", 30, 30, 'Consolas', '30px', 'texto');
   //osbtaculos = new componentes('yellow', 120, 80, 10, 100);
 }
 
@@ -134,8 +134,8 @@ function jogoAtualizar(){
    maxVazio = 200;
    vazio = Math.floor(Math.random() * (maxVazio - minVazio + 1) + minVazio);
    //y = jogoArea.canvas.height - 200;
-   osbtaculos.push(new componentes('yellow', x, 0 , altura, 10));
-   osbtaculos.push(new componentes('yellow', x, altura  + vazio , x - altura - vazio, 10));
+   osbtaculos.push(new componentes('#00FFFF', x, 0 , altura, 10));
+   osbtaculos.push(new componentes('#00FFFF', x, altura  + vazio , x - altura - vazio, 10));
   }
 
   //osbtaculos.atualizar();
