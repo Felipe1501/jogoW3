@@ -23,6 +23,17 @@ window.onload = function(){
   document.querySelector("#reset").addEventListener("click", function(){
      reload();
   });
+
+    document.querySelector("#corA").addEventListener("click", function(){
+    document.querySelector("#reset").style.color = "#0000FF";
+     document.querySelector("#reset").style.text = "#0000FF";
+    document.querySelector("canvas").style.backgroundImage = "url('https://i.pinimg.com/originals/db/b6/23/dbb6235fb4cb9662d38af631184ba9db.gif')";
+  });
+
+    document.querySelector("#corB").addEventListener("click", function(){
+    document.querySelector("#reset").style.color = "#f00";
+  });
+
 }
 
 var personagemObj;
