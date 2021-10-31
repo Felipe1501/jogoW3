@@ -26,12 +26,12 @@ window.onload = function(){
 
     document.querySelector("#corA").addEventListener("click", function(){
     document.querySelector("#reset").style.color = "#0000FF";
-     document.querySelector("#reset").style.text = "#0000FF";
-    document.querySelector("canvas").style.backgroundImage = "url('https://i.pinimg.com/originals/db/b6/23/dbb6235fb4cb9662d38af631184ba9db.gif')";
+    document.querySelector("canvas").style.backgroundImage = "url('https://acegif.com/wp-content/gif/outerspace-63.gif')";
   });
 
     document.querySelector("#corB").addEventListener("click", function(){
     document.querySelector("#reset").style.color = "#f00";
+    document.querySelector("canvas").style.backgroundImage = "url('https://tionitroblog.files.wordpress.com/2013/05/zb3bzcv.gif')";
   });
 
 }
@@ -145,8 +145,8 @@ function jogoAtualizar(){
    maxVazio = 200;
    vazio = Math.floor(Math.random() * (maxVazio - minVazio + 1) + minVazio);
    //y = jogoArea.canvas.height - 200;
-   osbtaculos.push(new componentes('#00FFFF', x, 0 , altura, 10));
-   osbtaculos.push(new componentes('#00FFFF', x, altura  + vazio , x - altura - vazio, 10));
+   osbtaculos.push(new componentes('#87CEEB', x, 0 , altura, 10));
+   osbtaculos.push(new componentes('#87CEEB', x, altura  + vazio , x - altura - vazio, 10));
   }
 
   //osbtaculos.atualizar();
