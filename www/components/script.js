@@ -24,13 +24,32 @@ window.onload = function(){
      reload();
   });
 
+  var valor = 0;
+
+//$(document).on("click", "#corA", function(){
+ // var dados = {mudar: $("#reset").val(style.color = "#0000FF"), mudar2: $("canvas").val(style.backgroundImage = "url('https://acegif.com/wp-content/gif/outerspace-63.gif')")};
+ // localStorage.setItem(valor,JSON.stringify(dados));
+  //valor++;
+//});
+
+
     document.querySelector("#corA").addEventListener("click", function(){
     document.querySelector("#reset").style.color = "#0000FF";
+    document.querySelector("#subir").style.color = "#0000FF";
+    document.querySelector("#esquerda").style.color = "#0000FF";
+    document.querySelector("#direita").style.color = "#0000FF";
+    document.querySelector("#descer").style.color = "#0000FF";
+    document.querySelector("body").style.backgroundColor = "#F5F5F5";
     document.querySelector("canvas").style.backgroundImage = "url('https://acegif.com/wp-content/gif/outerspace-63.gif')";
   });
 
     document.querySelector("#corB").addEventListener("click", function(){
-    document.querySelector("#reset").style.color = "#f00";
+    document.querySelector("#reset").style.color = "#FF1493";
+    document.querySelector("#subir").style.color = "#FF1493";
+    document.querySelector("#esquerda").style.color = "#FF1493";
+    document.querySelector("#direita").style.color = "#FF1493";
+    document.querySelector("#descer").style.color = "#FF1493";
+    document.querySelector("body").style.backgroundColor = "#B0E0E6";
     document.querySelector("canvas").style.backgroundImage = "url('https://tionitroblog.files.wordpress.com/2013/05/zb3bzcv.gif')";
   });
 
