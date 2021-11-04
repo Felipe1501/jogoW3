@@ -1,5 +1,26 @@
 window.onload = function(){
   jogoInicio();
+
+  function configuracoes(){
+    let inverso = {
+      canvas : "url('https://acegif.com/wp-content/gif/outerspace-63.gif')",
+      body : "#FFEBCD",
+      botoes : "#0000FF"
+    }
+
+    localStorage.setItem("inverso", JSON.stringify(inverso));
+
+    let desinverso = {
+      canvas : "url('https://tionitroblog.files.wordpress.com/2013/05/zb3bzcv.gif')",
+      body : "#A9A9A9",
+      botoes : "#FF1493"
+    }
+
+    localStorage.setItem("desinverso", JSON.stringify(desinverso));
+  }
+
+  configuracoes();
+
   document.querySelector("#direita").addEventListener("click", function(){
      right();
      setTimeout(pare, 1000);
@@ -33,24 +54,48 @@ window.onload = function(){
 //});
 
 
-    document.querySelector("#corA").addEventListener("click", function(){
-    document.querySelector("#reset").style.color = "#0000FF";
-    document.querySelector("#subir").style.color = "#0000FF";
-    document.querySelector("#esquerda").style.color = "#0000FF";
-    document.querySelector("#direita").style.color = "#0000FF";
-    document.querySelector("#descer").style.color = "#0000FF";
-    document.querySelector("body").style.backgroundColor = "#F5F5F5";
-    document.querySelector("canvas").style.backgroundImage = "url('https://acegif.com/wp-content/gif/outerspace-63.gif')";
+    //document.querySelector("#corA").addEventListener("click", function(){
+    //document.querySelector("#reset").style.color = "#0000FF";
+    //document.querySelector("#subir").style.color = "#0000FF";
+    //document.querySelector("#esquerda").style.color = "#0000FF";
+    //document.querySelector("#direita").style.color = "#0000FF";
+    //document.querySelector("#descer").style.color = "#0000FF";
+    //document.querySelector("body").style.backgroundColor = "#F5F5F5";
+    //document.querySelector("canvas").style.backgroundImage = "url('https://acegif.com/wp-content/gif/outerspace-63.gif')";
+  //});
+
+    //document.querySelector("#corB").addEventListener("click", function(){
+    //document.querySelector("#reset").style.color = "#FF1493";
+    //document.querySelector("#subir").style.color = "#FF1493";
+    //document.querySelector("#esquerda").style.color = "#FF1493";
+    //document.querySelector("#direita").style.color = "#FF1493";
+    //document.querySelector("#descer").style.color = "#FF1493";
+    //document.querySelector("body").style.backgroundColor = "#B0E0E6";
+    //document.querySelector("canvas").style.backgroundImage = "url('https://tionitroblog.files.wordpress.com/2013/05/zb3bzcv.gif')";
+  //});
+
+  document.querySelector("#corA").addEventListener("click", function(){
+    let temas = JSON.parse(localStorage.getItem("inverso"));
+    document.querySelector("canvas").style.backgroundImage = temas.canvas;
+    document.querySelector("body").style.backgroundColor = temas.body;
+
+    const botoes = document.querySelectorAll(".bao");
+
+    Array.prototype.filter.call(botoes, function(botoes){
+      botoes.style.color = temas.botoes;
+    });
   });
 
     document.querySelector("#corB").addEventListener("click", function(){
-    document.querySelector("#reset").style.color = "#FF1493";
-    document.querySelector("#subir").style.color = "#FF1493";
-    document.querySelector("#esquerda").style.color = "#FF1493";
-    document.querySelector("#direita").style.color = "#FF1493";
-    document.querySelector("#descer").style.color = "#FF1493";
-    document.querySelector("body").style.backgroundColor = "#B0E0E6";
-    document.querySelector("canvas").style.backgroundImage = "url('https://tionitroblog.files.wordpress.com/2013/05/zb3bzcv.gif')";
+    let temas = JSON.parse(localStorage.getItem("desinverso"));
+    document.querySelector("canvas").style.backgroundImage = temas.canvas;
+    document.querySelector("body").style.backgroundColor = temas.body;
+
+    const botoes = document.querySelectorAll(".bao");
+
+    Array.prototype.filter.call(botoes, function(botoes){
+      botoes.style.color = temas.botoes;
+    });
   });
 
 }
@@ -64,8 +109,8 @@ var pontos;
 
 function jogoInicio(){
   jogoArea.start();
-  personagemObj = new componentes("#F00", 10, 120, 30, 30);
-  pontos = new componentes("#F00", 30, 30, 'Consolas', '30px', 'texto');
+  personagemObj = new componentes("#00BFFF", 10, 120, 30, 30);
+  pontos = new componentes("#FFFF00", 30, 30, 'Consolas', '30px', 'texto');
   //osbtaculos = new componentes('yellow', 120, 80, 10, 100);
 }
 
