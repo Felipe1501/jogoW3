@@ -12,7 +12,7 @@ window.onload = function(){
 
     let desinverso = {
       canvas : "url('https://tionitroblog.files.wordpress.com/2013/05/zb3bzcv.gif')",
-      body : "#A9A9A9",
+      body : "#E0FFFF",
       botoes : "#FF1493"
     }
 
